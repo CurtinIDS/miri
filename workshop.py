@@ -57,8 +57,24 @@ def generate_ground_truth(x,y):
     return np.sin(x)+2*np.cos(x)+3*np.cosh(y)
 
 
+
+def generate_random(N=30,timesteps=400,features=2):
+    '''
+    Input: N - How many samples? 
+    timesteps - number of timesteps 
+    features - number of features 
+    '''
+    random_input=np.random.uniform(-30,10,size=[N,timesteps,features]) #Mood --2000 is sample size
+    random_input=(random_input-np.mean(random_input))/np.std(random_input)  #Standardize data
+
+
+    random_output=np.random.uniform(-30,10,size=[N,timesteps]) #feature 2-blood pressure?
+    random_output=(random_output-np.mean(random_output))/np.std(random_output) #Standardize data 
+    return random_input,random_output
+
+
 def optimize_cg(parameters,model,X,Y,values):
     model.set_weights(convert_weights(model,parameters))
-    loss=np.sqrt(np.sum(np.square(model.predict(X)-Y.reshape([len(X),1])))/len(X))
+    loss=np.sqrt(np.sum(np.square(model.predict(X)-Y.reshape([X.shape[0],X.shape[1]])))/(X.shape[0]*X.shape[1]))
     values.append(loss)
     return float(loss)
