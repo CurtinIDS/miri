@@ -4,7 +4,10 @@ cache/*
 data/*
 output/*
 tf_files/*
+meteors*
 .ipynb_checkpoints*
+trum*
+
 
 # OS generated files
 .DS_Store
