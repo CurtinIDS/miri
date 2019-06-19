@@ -4,7 +4,7 @@ cache/*
 data/*
 output/*
 tf_files/*
-meteors*
+meteors.hd5
 .ipynb_checkpoints*
 trum*
 
